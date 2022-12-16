@@ -4,7 +4,7 @@ const userRoutes = require('./routes/userRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 
 const app = express();
-app.use(cors());
+app.use(cors({ credentials: true }));
 app.use(express.json());
 // app.use(function (req, res, next) {
 // 	res.setHeader('Access-Control-Allow-Origin', req.header('origin'));
