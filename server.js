@@ -19,6 +19,7 @@ const server = app.listen(process.env.PORT, () => {
 const io = new socket.Server(server, {
 	cors: {
 		origin: 'https://kasachat.vercel.app',
+		credentials: true,
 	},
 });
 
