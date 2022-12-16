@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(function (req, res, next) {
-	res.setHeader('Access-Control-Allow-Origin', 'https://kasachat.vercel.app');
+	res.setHeader('Access-Control-Allow-Origin', req.header('origin'));
 
 	res.setHeader(
 		'Access-Control-Allow-Methods',
