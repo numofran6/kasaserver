@@ -34,7 +34,10 @@ module.exports.login = async (req, res, next) => {
 
 		const user = await User.findOne({ username }).select('+password');
 		if (!user || !bcrypt.compareSync(password, user.password)) {
-			return res.json({ msg: 'Incorrect username or password', status: false });
+			return res
+				.header('Access-Control-Allow-Origin', 'https://kasachat.vercel.app')
+				.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+				.json({ msg: 'Incorrect username or password', status: false });
 		}
 
 		const userInfo = {
@@ -45,9 +48,9 @@ module.exports.login = async (req, res, next) => {
 			id: user._id,
 		};
 		return res
-			.json({ status: true, userInfo })
-			.setHeader('Access-Control-Allow-Origin', req.header('origin'))
-			.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+			.header('Access-Control-Allow-Origin', 'https://kasachat.vercel.app')
+			.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+			.json({ status: true, userInfo });
 	} catch (err) {
 		next(err);
 	}
