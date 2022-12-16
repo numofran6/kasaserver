@@ -46,7 +46,8 @@ module.exports.login = async (req, res, next) => {
 		};
 		return res
 			.json({ status: true, userInfo })
-			.setHeader('Access-Control-Allow-Origin', req.header('origin'));
+			.setHeader('Access-Control-Allow-Origin', req.header('origin'))
+			.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
 	} catch (err) {
 		next(err);
 	}
